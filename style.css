@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  width: 280px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  padding: 6px;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+  font-size: 12px;
+}
+
+.status {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.status.good {
+  color: #0f9d58; /* green */
+}
+
+.status.warn {
+  color: #f4b400; /* yellow */
+}
+
+.status.bad {
+  color: #db4437; /* red */
+}
+
+.preview {
+  border: 1px solid #ddd;
+  padding: 6px;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
