@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meta Title Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h3>Meta Title Checker</h3>
+
+  <textarea
+    id="titleInput"
+    placeholder="Paste your meta title here…"
+    rows="3"></textarea>
+
+  <div class="stats">
+    <span>Characters: <strong id="charCount">0</strong></span>
+    <span>Pixels: <strong id="pixelCount">0</strong>px</span>
+  </div>
+
+  <div id="status" class="status">
+    Start typing…
+  </div>
+
+  <div class="preview">
+    <span id="previewText"></span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
