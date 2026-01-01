@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 12px;
-  width: 500px;
+  width: 550px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #ffffff;
   color: #111827;
@@ -79,8 +79,4 @@ hr {
   color: #006621;
 }
 
-.serp-title {
-  font-size: 18px;
-  color: #1a0dab;
-  white-space: nowrap;
-}
+.serp-title {   font-size: 18px;   color: #1a0dab;   white-space: normal;   line-height: 1.3; }
