@@ -1,193 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Meta Title Checker</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 12px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #ffffff;
-  color: #111827;
-  width: 420px;
-}
-
-/* Heading */
-h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-}
-
-/* Helper text */
-.helper-text {
-  font-size: 12px;
-  color: #5f6368;
-  margin-bottom: 6px;
-}
-
-/* Input */
-textarea {
-  width: 100%;
-  padding: 8px;
-  font-size: 13px;
-  resize: none;
-  border: 1px solid #dadce0;
-  border-radius: 6px;
-}
-
-/* Stats */
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 6px;
-  font-size: 12px;
-}
-
-/* Status */
-.status {
-  margin-top: 6px;
-  font-size: 13px;
-}
-
-.status.good {
-  color: #0f9d58;
-}
-
-.status.warn {
-  color: #f29900;
-}
-
-.status.bad {
-  color: #d93025;
-}
-
-/* Divider */
-hr {
-  border: none;
-  border-top: 1px solid #e5e7eb;
-  margin: 10px 0;
-}
-
-/* Google-style SERP preview */
-.serp-preview {
-  margin-top: 6px;
-  padding: 8px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  font-family: Arial, sans-serif;
-}
-
-.serp-label {
-  font-size: 12px;
-  color: #70757a;
-  margin-bottom: 4px;
-}
-
-.serp-url {
-  font-size: 12px;
-  color: #006621;
-}
-
-.serp-title {
-  font-size: 18px;
-  color: #1a0dab;
-  white-space: nowrap;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Meta Title Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h3>Meta Title Checker</h3>
+  <h3>Meta Title Checker</h3>
 
-<p class="helper-text">
-Google typically shows up to ~580px on desktop.
-</p>
+  <p class="helper-text">
+    Google typically shows up to ~580px on desktop.
+  </p>
 
-<textarea
-  id="titleInput"
-  rows="3"
-  placeholder="Paste your meta title here…"></textarea>
+  <textarea
+    id="titleInput"
+    rows="3"
+    placeholder="Paste your meta title here…"></textarea>
 
-<div class="stats">
-  <span>Characters: <strong id="charCount">0</strong></span>
-  <span>Pixels: <strong id="pixelCount">0</strong>px</span>
-</div>
-
-<div id="status" class="status">
-  Start typing…
-</div>
-
-<hr>
-
-<div class="serp-preview">
-  <div class="serp-label">Desktop Google Preview</div>
-  <div class="serp-url">https://example.com › page</div>
-  <div class="serp-title" id="serpTitle">
-    Your title preview will appear here
+  <div class="stats">
+    <span>Characters: <strong id="charCount">0</strong></span>
+    <span>Pixels: <strong id="pixelCount">0</strong>px</span>
   </div>
-</div>
 
-<script>
-const input = document.getElementById("titleInput");
-const charCount = document.getElementById("charCount");
-const pixelCount = document.getElementById("pixelCount");
-const status = document.getElementById("status");
-const serpTitle = document.getElementById("serpTitle");
+  <div id="status" class="status">
+    Start typing…
+  </div>
 
-const MAX_PIXELS = 580;
+  <hr>
 
-// Canvas for accurate pixel calculation
-const canvas = document.createElement("canvas");
-const ctx = canvas.getContext("2d");
-ctx.font = "18px Arial";
+  <div class="serp-preview">
+    <div class="serp-label">Desktop Google Preview</div>
+    <div class="serp-url">https://example.com › page</div>
+    <div class="serp-title" id="serpTitle">
+      Your title preview will appear here
+    </div>
+  </div>
 
-function truncateByPixels(text, maxPixels) {
-  let truncated = "";
-  for (let i = 0; i < text.length; i++) {
-    const test = truncated + text[i];
-    if (ctx.measureText(test + "...").width > maxPixels) {
-      return truncated + "...";
-    }
-    truncated = test;
-  }
-  return truncated;
-}
-
-input.addEventListener("input", () => {
-  const text = input.value;
-  const chars = text.length;
-  const pixels = Math.round(ctx.measureText(text).width);
-
-  charCount.textContent = chars;
-  pixelCount.textContent = pixels;
-
-  serpTitle.textContent = text
-    ? truncateByPixels(text, MAX_PIXELS)
-    : "Your title preview will appear here";
-
-  status.className = "status";
-
-  if (!text) {
-    status.textContent = "Start typing…";
-  } else if (pixels <= 520) {
-    status.textContent = "Good length ✓";
-    status.classList.add("good");
-  } else if (pixels <= MAX_PIXELS) {
-    status.textContent = "Almost too long ⚠";
-    status.classList.add("warn");
-  } else {
-    status.textContent = "Too long ✕";
-    status.classList.add("bad");
-  }
-});
-</script>
-
+  <script src="popup.js"></script>
 </body>
 </html>
