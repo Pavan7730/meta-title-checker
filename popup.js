@@ -2,41 +2,29 @@ const input = document.getElementById("titleInput");
 const charCount = document.getElementById("charCount");
 const pixelCount = document.getElementById("pixelCount");
 const status = document.getElementById("status");
-const preview = document.getElementById("previewText");
+const serpTitle = document.getElementById("serpTitle");
 
-// Create a hidden canvas to calculate pixel width
-const canvas = document.createElement("canvas");
-const context = canvas.getContext("2d");
-
-// Google-like title font
-context.font = "18px Arial";
+function calculatePixels(text) {
+  return Math.round(text.length * 8.9); // average Google pixel width
+}
 
 input.addEventListener("input", () => {
   const text = input.value.trim();
+  const chars = text.length;
+  const pixels = calculatePixels(text);
 
-  // Character count
-  charCount.textContent = text.length;
-
-  // Pixel width calculation
-  const pixels = Math.round(context.measureText(text).width);
+  charCount.textContent = chars;
   pixelCount.textContent = pixels;
+  serpTitle.textContent = text || "Your title preview will appear here";
 
-  // Preview text
-  preview.textContent = text;
-
-  // Reset status classes
-  status.className = "status";
-
-  if (text.length === 0) {
+  if (chars === 0) {
     status.textContent = "Start typing…";
-  } else if (pixels <= 580) {
-    status.textContent = "Good length ✔";
-    status.classList.add("good");
-  } else if (pixels <= 620) {
-    status.textContent = "Slightly long ⚠";
-    status.classList.add("warn");
+    status.className = "status";
+  } else if (chars <= 60 && pixels <= 580) {
+    status.textContent = "Good length ✓";
+    status.className = "status good";
   } else {
-    status.textContent = "Too long ❌";
-    status.classList.add("bad");
+    status.textContent = "Too long ⚠";
+    status.className = "status bad";
   }
 });
