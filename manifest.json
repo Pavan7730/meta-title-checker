@@ -1,10 +1,21 @@
 {
   "manifest_version": 3,
-  "name": "Meta Title Checker",
-  "version": "1.0.0",
-  "description": "Check Google meta title character length and pixel width instantly. No data collection.",
+  "name": "GSC URL Insights",
+  "description": "View Google Search Console clicks, impressions & keywords for the current page.",
+  "version": "0.1.0",
+  "permissions": [
+    "tabs",
+    "identity",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*"
+  ],
   "action": {
     "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "icons": {
     "16": "icon16.png",
